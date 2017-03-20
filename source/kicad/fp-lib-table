@@ -1,0 +1,5 @@
+(fp_lib_table
+  (lib (name footprints)(type KiCad)(uri C:\UltraLibrarian\Library\Exported\KiCad\2017-03-13_11-23-35\footprints.pretty)(options "")(descr ""))
+  (lib (name adc08200)(type KiCad)(uri "$(KIPRJMOD)\\adc08200.pretty")(options "")(descr ""))
+  (lib (name SMA)(type KiCad)(uri "$(KIPRJMOD)\\SMA.pretty")(options "")(descr ""))
+)
