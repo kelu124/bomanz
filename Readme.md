@@ -42,7 +42,7 @@ Bomanz: a high speed extension for Raspberry Pi
 
 ### What is it supposed to do?
 
-The aim of this echOmod is to get the signal, and convert it to a digital output to the RPi.
+The aim of this echOmod is to get the signal, and convert it to a digital output to the RPi. An older version using a [CA3306](/CA3306E/) can be found as well.
 
 ### How does it work: block diagram
 
@@ -69,6 +69,10 @@ The aim of this echOmod is to get the signal, and convert it to a digital output
 ### PCB yeay !!
 
 ![](/images/bomanz_pcb.png)
+
+### Generation of gerbers for OSHPark
+
+http://docs.oshpark.com/design-tools/kicad/generating-kicad-gerbers/
 
 ## Discussions
 
