@@ -74,6 +74,12 @@ The aim of this echOmod is to get the signal, and convert it to a digital output
 
 http://docs.oshpark.com/design-tools/kicad/generating-kicad-gerbers/
 
+### Images!
+
+![](/images/20170406_124914.jpg) for slow
+
+![](/images/20170406_124950.jpg) for fast
+
 ## Discussions
 
 ### TODO
