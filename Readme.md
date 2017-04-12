@@ -66,6 +66,10 @@ The aim of this echOmod is to get the signal, and convert it to a digital output
  
 ## Constraint and limits
 
+### Mounted... yeay!! To test =)
+
+![](/images/20170412_231408.jpg)
+
 ### PCB yeay !!
 
 ![](/images/bomanz_pcb.png)
