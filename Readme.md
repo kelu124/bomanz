@@ -70,7 +70,7 @@ I've always needed a small upgrade to the existing raspberry ADC extensions, wou
 
 ### Compiling...
 
-See the worklog
+See the [20170417-PlayingWithCA3306E worklog](/20170417-PlayingWithCA3306E.md)
 
 ### Mounted... yeay!! To test =)
 
