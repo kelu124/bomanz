@@ -42,7 +42,9 @@ Bomanz: a high speed extension for Raspberry Pi
 
 ### What is it supposed to do?
 
-The aim of this echOmod is to get the signal, and convert it to a digital output to the RPi. An older version using a [CA3306](/CA3306E/) can be found as well.
+I've always needed a small upgrade to the existing raspberry ADC extensions, would love something in the 20-Msps range. Let's see if one can do it! Never tried smd, and thinking of using both smd and dip.. interesting learning curve ahead.
+
+ An older version using a [CA3306](/CA3306E/) can be found as well.
 
 ### How does it work: block diagram
 
@@ -66,9 +68,15 @@ The aim of this echOmod is to get the signal, and convert it to a digital output
  
 ## Constraint and limits
 
+### Compiling...
+
+See the worklog
+
 ### Mounted... yeay!! To test =)
 
 ![](/images/20170412_231408.jpg)
+
+**Note to self**: Tantalum capacitor: not in reverse! Never!!
 
 ### PCB yeay !!
 
