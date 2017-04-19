@@ -42,6 +42,15 @@ Following the steps:
 
 ```
 sudo make
+```
+
+One can obtain details on the module via:
+
+```
+modinfo ca3306-drv.ko
+```
+
+```
 sudo insmod ./ca3306-drv.ko
 sudo mknod /dev/chardev c 248 0
 ```
