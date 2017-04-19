@@ -6,8 +6,8 @@
 #include<linux/io.h>
 #include<linux/vmalloc.h>
 
-int init_module(void);
-void cleanup_module(void);
+int __init init_module(void);
+void __exit cleanup_module(void);
 static int device_open(struct inode *, struct file *);
 static int device_release(struct inode *, struct file *);
 static ssize_t device_read(struct file *, char *, size_t, loff_t *);
@@ -88,7 +88,11 @@ static unsigned char *ScopeBufferStop;
 
 static int map_peripheral(struct bcm2835_peripheral *p){
 	p->addr=(uint32_t *)ioremap(GPIO_BASE, 41*4);
-	return 0;
+
+	if (p->addr) 
+		return 0;
+	else
+		return -1;
 }
 
 static void unmap_peripheral(struct bcm2835_peripheral *p){
@@ -128,7 +132,7 @@ int init_module(void){
 		printk(KERN_ALERT "Reg. char dev fail %d\n",Major);
 		return Major;
 	}
-	printk(KERN_INFO "Major number %d.\n", Major);
+	pr_info("Major number %d.\n", Major);
 	printk(KERN_INFO "created a dev file with\n");
 	printk(KERN_INFO "'mknod /dev/%s c %d 0'.\n", DEVICE_NAME, Major);
 	
@@ -207,3 +211,7 @@ static ssize_t device_write(struct file *filp, const char *buff, size_t len, lof
 	printk(KERN_ALERT "This operation is not supported.\n");
 	return -EINVAL;
 }
+
+MODULE_AUTHOR("Luc !");
+MODULE_LICENSE("GPL"); // HOLY GPL !
+MODULE_VERSION("1");
