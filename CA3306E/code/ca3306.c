@@ -308,6 +308,6 @@ device_write(struct file *filp, const char *buff, size_t len, loff_t * off)
 }
 
 
-MODULE_AUTHOR("Luc !");
+MODULE_AUTHOR("kelu124");
 MODULE_LICENSE("GPL"); // HOLY GPL !
 MODULE_VERSION("1");

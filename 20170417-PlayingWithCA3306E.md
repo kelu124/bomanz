@@ -81,6 +81,7 @@ The first compilation takes a while...
 
 ### Testing 
 
+
 * Test with the [getSample.cpp](/CA3306E/code/getSample.cpp)
 
 ```
@@ -88,7 +89,7 @@ g++ -o getSample getSample.cpp
 ./getSample > [data.txt](/CA3306E/data/1MHz.data)
 ```
 
-And finally we get
+And finally we get, for an image of a 0-2V sine at 1MHz:
 
 ![](/images/20170422-FirstAcqs.png)
 

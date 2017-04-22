@@ -74,6 +74,8 @@ See the [worklog in jupyter](/CA3306E/20170422-FirstAcqs.ipynb) for the [CA3306E
 
 ![](/images/20170422-FirstAcqs.png)
 
+Image of a 0-2V sine at 1MHz.
+
 
 ### Compiling...
 

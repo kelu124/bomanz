@@ -1,4 +1,3 @@
-<code>
 #include<iostream>
 #include<cmath>
 #include<fstream>
@@ -54,7 +53,7 @@ int main(){
 		tmp = dataStruct.Buffer[i] & (0b1<<(27));
 		valueADC2+=(tmp>>22);
 		
-		std::cout<<i*time<<"\t"<<valueADC1*(5./63.)<<"\t"<<valueADC2*(5./63.)<<std::endl;
+		std::cout<<i*time<<"\t"<<valueADC1*(3.3/63.)<<"\t"<<valueADC2*(3.3/63.)<<std::endl;
 	}
 	return 0;
 }
