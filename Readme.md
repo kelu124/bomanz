@@ -68,6 +68,13 @@ I've always needed a small upgrade to the existing raspberry ADC extensions, wou
  
 ## Constraint and limits
 
+### CA3306 captures.. it works!
+
+See the [worklog in jupyter](/CA3306E/20170422-FirstAcqs.ipynb) for the [CA3306E (see datasheet)](/pdf/CA3306.pdf)
+
+![](/images/20170422-FirstAcqs.png)
+
+
 ### Compiling...
 
 See the [20170417-PlayingWithCA3306E worklog](/20170417-PlayingWithCA3306E.md)
@@ -96,7 +103,9 @@ http://docs.oshpark.com/design-tools/kicad/generating-kicad-gerbers/
 
 ### TODO
 
-* Moving
+* EndGame: moving to a 20-30Msps, for a 10 to 12 bit ADC. 
+* Have access points to VRef, GND, and maybe VRef / 2 for self testing.
+* Add reference voltage ICs to stabilize Vref
 
 ### DONE
 
@@ -104,7 +113,9 @@ http://docs.oshpark.com/design-tools/kicad/generating-kicad-gerbers/
 
 ### People
 
-* A lot !
+* Thanks to @eiffel for his kernel expertise and GPL3 crusade
+
+ 
 
 ## License
 

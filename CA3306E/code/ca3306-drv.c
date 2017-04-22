@@ -19,9 +19,11 @@ static ssize_t device_write(struct file *, const char *, size_t, loff_t *);
 
 /* setting and macros for the GPIO connections */
 #define BCM2708_PERI_BASE 0x20000000
-#define GPIO_BASE (BCM2708_PERI_BASE + 0x20000000)
+#define GPIO_BASE (BCM2708_PERI_BASE + 0x200000) // original was higher than 0x200000 .. mistake?
 
-#define INP_GPIO(g) *(gpio.addr + ((g)/10)) &= ~(7<<(((g)%10)*3))
+#define INP_GPIO(g) *(gpio.addr+((g)/10)) &= ~(7<<(((g)%10)*3))
+#define OUT_GPIO(g) *(gpio.addr+((g)/10)) |=  (1<<(((g)%10)*3))
+
 #define SET_GPIO_ALT(g,a) *(gpio.addr + (((g)/10))) |= (((a)<=3?(a) + 4:(a)==4?3:2)<<(((g)%10)*3))
 
 /* GPIO clock */
@@ -76,6 +78,7 @@ static struct file_operations fops = {
 
 static struct bcm2835_peripheral myclock = {CLOCK_BASE};
 static struct bcm2835_peripheral gpio = {GPIO_BASE};
+
 struct DataStruct{
 	uint32_t Buffer[SAMPLE_SIZE];
 	uint32_t time;
@@ -159,6 +162,7 @@ int init_module(void){
 	p->addr=(uint32_t *)ioremap(CLOCK_BASE, 41*4);
 	
 	INP_GPIO(4);
+	OUT_GPIO(4);
 	SET_GPIO_ALT(4,0);
 	*(myclock.addr+28)=0x5A000000 | speed_id;
 	
