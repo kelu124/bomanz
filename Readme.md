@@ -108,6 +108,7 @@ http://docs.oshpark.com/design-tools/kicad/generating-kicad-gerbers/
 * EndGame: moving to a 20-30Msps, for a 10 to 12 bit ADC. 
 * Have access points to VRef, GND, and maybe VRef / 2 for self testing.
 * Add reference voltage ICs to stabilize Vref
+* Using another ADC
 
 ### DONE
 
