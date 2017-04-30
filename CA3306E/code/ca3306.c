@@ -103,6 +103,10 @@ static struct file_operations fops = {
 
 //---------------------------------------------------------------------------------------------------------
 
+/*
+We need to assign the addresses of GPIO and the clock to a variable that we can find the hardware. A data structure is defined to hold our values we read out from the ADC, as well as the time from start of the readout to the end of the readout. This time is needed in order to calculate the time step between each sample. Additional two pointers are defined for later operations.
+*/
+
 static struct bcm2835_peripheral myclock = {CLOCK_BASE};
 
 static struct bcm2835_peripheral gpio = {GPIO_BASE};
@@ -119,7 +123,9 @@ static unsigned char *ScopeBufferStart;
 static unsigned char *ScopeBufferStop;
 
 //---------------------------------------------------------------------------------------------------------
-
+/*
+Since we want to manipulate hardware registers we need to map the hardware registers into memory. This can be done by two functions, one for the mapping and one for the unmapping.
+*/
 static int map_peripheral(struct bcm2835_peripheral *p)
 {
 	p->addr=(uint32_t *)ioremap(GPIO_BASE, 41*4); //41 GPIO register with 32 bit (4*8)
@@ -130,10 +136,13 @@ static void unmap_peripheral(struct bcm2835_peripheral *p) {
  	iounmap(p->addr);//unmap the address
 }
 //---------------------------------------------------------------------------------------------------------
+/*
+ In our case we are only taking 10k samples so not too much time. Before the sample taking we take a time stamp. Then we read out 10k times the GPIO register and save it in our data structure. The GPIO register is a 32bit value so it is made out of 32 ‘1’s and ‘0’s each defining if the GPIO port is high (3.3V) or low (GND). After the read out we take another time stamp and turn on all interrupts again. The two time stamps we took are important since we can calculate how long it took to read in the 10k samples. The time difference divided by 10k gives us the time between each sample point. In case the sample frequency is too high and should be reduced one can add some delay and waste some time during each readout step. Here the aim is to achieve the maximal performance.
+*/
 static void readScope(){
 
 	int counter=0;
-	int Fail=0;
+	//int Fail=0;
 
 	//disable IRQ
     local_irq_disable();
@@ -166,7 +175,9 @@ static void readScope(){
 }
 
 //---------------------------------------------------------------------------------------------------------
-
+/*
+In order to make a kernel module work the module needs some special entry functions. One of these functions is the init_module(void) which is called when the kernel module is loaded. Here the function to map the periphery is called, the GPIO pins are defined as inputs and a device file in /dev/ is created for communication with the kernel module. Additionally a 10 MHz clock signal on the GPIO Pin 4 is defined. This clock signal is needed in order to feed the ADC with an input clock. A 500 MHz signal from a PLL is used and the clock divider is set to divide by 50, which gives the required 10 MHz signal. More details on this clock can found in chapter 6.3 General Purpose GPIO Clocks in [4]. 
+*/
 /*
  * This function is called when the module is loaded
  */
@@ -240,6 +251,9 @@ void cleanup_module(void)
  * Called when a process tries to open the device file, like
  * "cat /dev/mycharfile"
  */
+/*
+Furthermore a function is needed which is called when the device file belonging to our kernel module is opened. When this happens the measurement is done by calling the readScope() function and saved in memory.
+*/
 static int device_open(struct inode *inode, struct file *file)
 {
 	static int counter = 0;
