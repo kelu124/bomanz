@@ -6,6 +6,7 @@
 2. Offseting the signal
 3. Processing data and FFT'ing
 4. Checking the power use of the modules at large
+5. Next steps
 
 ## 1. Testing the ADC08200
 
@@ -65,3 +66,12 @@ A simple piezo plugged onto the pulser
 ![](/offset/20170430_172456.jpg)
 
 * __Using: 5.1V et 418mA__
+
+## 5. Next steps & challenges
+
+* Do a small PCB for the offsetter
+    * Offset by 3.3V/2
+    * Gain between 0.5 and 2 with a settable potentiometer 
+* Check the control of the pulser by the RPi 
+* Check if the speed of ADC acquisition can be higher
+* Update the [motherboard](https://github.com/kelu124/echomods/blob/master/doj/brief_v2.md)
