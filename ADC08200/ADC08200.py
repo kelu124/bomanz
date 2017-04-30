@@ -17,8 +17,9 @@ def CreateSeries(File,FreqRef):
 	t = [x.strip().split("\t")[0] for x in content]
 	t = np.array(t).astype(np.float)/FreqRef
 	Res = []
+	N = t[-1]
 	for i in range(len(OverFlow)):
 		Res.append((V[i]-32*OverFlow[i]+32*Vd[i]+128*OverFlow[i])*3.3/256)
 
-	return Res,t
+	return Res,t,N
 
