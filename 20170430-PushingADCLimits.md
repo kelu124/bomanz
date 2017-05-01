@@ -73,6 +73,7 @@ __Tomorrow__
 * Update the [motherboard](https://github.com/kelu124/echomods/blob/master/doj/brief_v2.md)
 * Test noise on the sequence for the emulator 
 * Play with the VRef
+* Test the enveloppe detection
 
 __Later on__
 * Do a small PCB for the offsetter
