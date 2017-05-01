@@ -68,6 +68,24 @@ I've always needed a small upgrade to the existing raspberry ADC extensions, wou
  
 ## Constraint and limits
 
+### ADC08200 captures.. it works too!
+
+#### Signals? 
+
+Managed to get the signals from the [emulator](https://github.com/kelu124/echomods/tree/master/silent/).
+
+![](/images/SilentSigs.jpg)
+
+There's room enough to play with FFTs =) Let's see what FFT can yield on peaks from a 3.5MHz piezo ?
+
+![](/images/ADC08200piezoFFTed.png)
+
+#### Comparing to Croaker
+
+Let's now compare the acquisition to the [STM32 DAQ](https://github.com/kelu124/echomods/tree/master/croaker/).
+
+![](/images/BomanzVSCroaker.png)
+
 ### CA3306 captures.. it works!
 
 See the [worklog in jupyter](/CA3306E/20170422-FirstAcqs.ipynb) for the [CA3306E (see datasheet)](/pdf/CA3306.pdf)
