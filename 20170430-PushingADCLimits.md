@@ -69,9 +69,15 @@ A simple piezo plugged onto the pulser
 
 ## 5. Next steps & challenges
 
+__Tomorrow__
+* Update the [motherboard](https://github.com/kelu124/echomods/blob/master/doj/brief_v2.md)
+* Test noise on the sequence for the emulator 
+* Play with the VRef
+
+__Later on__
 * Do a small PCB for the offsetter
     * Offset by 3.3V/2
     * Gain between 0.5 and 2 with a settable potentiometer 
 * Check the control of the pulser by the RPi: control sequence through the ADC module
 * Check if the speed of ADC acquisition can be higher
-* Update the [motherboard](https://github.com/kelu124/echomods/blob/master/doj/brief_v2.md)
+
