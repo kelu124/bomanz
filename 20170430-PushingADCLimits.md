@@ -70,13 +70,13 @@ A simple piezo plugged onto the pulser
 ## 5. Next steps & challenges
 
 __Tomorrow__
-* Update the [motherboard](https://github.com/kelu124/echomods/blob/master/doj/brief_v2.md)
-* Test noise on the sequence for the emulator 
-* Play with the VRef
-* Test the enveloppe detection
+* [ ] Update the [motherboard](https://github.com/kelu124/echomods/blob/master/doj/brief_v2.md)
+* [ ] Test noise on the sequence for the emulator 
+* [x] Play with the VRef - [done, and not so interesting (see Notebook)](/ADC08200/20170501-TestingVref.ipynb)
+* [x] Test the enveloppe detection - done, with [Hilbert and BiVi transform](/ADC08200/20170430-ADC08200-FirstAcqs.ipynb)
 
 __Later on__
-* Do a small PCB for the offsetter
+* [CANCELLED] !! Do a small PCB for the offsetter
     * Offset by 3.3V/2
     * Gain between 0.5 and 2 with a settable potentiometer 
 * Check the control of the pulser by the RPi: control sequence through the ADC module
