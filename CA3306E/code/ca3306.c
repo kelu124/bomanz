@@ -67,6 +67,11 @@ static ssize_t device_write(struct file *, const char *, size_t, loff_t *);
 #define BIT4_PIN2 24
 #define BIT5_PIN2 27
 
+
+
+#define MY_NOP(__N)                 __asm ("nop");    // or sth like "MOV R0,R0"
+
+
 //---------------------------------------------------------------------------------------------------------
 
 // IO Acces
@@ -142,17 +147,37 @@ static void unmap_peripheral(struct bcm2835_peripheral *p) {
 static void readScope(){
 
 	int counter=0;
+	int Pon=0;
+	int Poff=0;
 	//int Fail=0;
 
 	//disable IRQ
-    local_irq_disable();
-    local_fiq_disable();
+	local_irq_disable();
+	local_fiq_disable();
 
 	struct timespec ts_start,ts_stop;
 	//Start time
-	getnstimeofday(&ts_start);
 
-    //take samples
+        GPIO_SET = 1 << 23;
+
+	while(Pon<10){
+MY_NOP(__N);
+Pon++;
+}
+        GPIO_CLR = 1 << 23;
+
+        GPIO_SET = 1 << 24;
+	while(Poff<1500){
+MY_NOP(__N);
+Poff++;
+}
+        GPIO_CLR = 1 << 24;
+
+
+
+
+	getnstimeofday(&ts_start);
+	//take samples
 	while(counter<SAMPLE_SIZE){
 		dataStruct.Buffer[counter++]= *(gpio.addr + 13); 
 	}
@@ -161,8 +186,8 @@ static void readScope(){
 	getnstimeofday(&ts_stop);
 
 	//enable IRQ
-    local_fiq_enable();
-    local_irq_enable();
+	local_fiq_enable();
+	local_irq_enable();
 
 	//save the time difference
 	dataStruct.time=timespec_to_ns(&ts_stop)-timespec_to_ns(&ts_start);//ns resolution
@@ -220,6 +245,9 @@ int init_module(void)
 	INP_GPIO(BIT3_PIN2);
 	INP_GPIO(BIT4_PIN2);
 	INP_GPIO(BIT5_PIN2);
+
+	OUT_GPIO(23);
+	OUT_GPIO(24);
 
 	//Set a clock signal on Pin 4
 	struct bcm2835_peripheral *p=&myclock;
