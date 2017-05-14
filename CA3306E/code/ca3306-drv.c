@@ -55,7 +55,7 @@ struct bcm2835_peripheral {
 	int mem_fd;
 	void *map;
 	volatile unsigned int *addr;
-	
+
 };
 
 static int map_peripheral(struct bcm2835_peripheral *p);
@@ -92,7 +92,7 @@ static unsigned char *ScopeBufferStop;
 static int map_peripheral(struct bcm2835_peripheral *p){
 	p->addr=(uint32_t *)ioremap(GPIO_BASE, 41*4);
 
-	if (p->addr) 
+	if (p->addr)
 		return 0;
 	else
 		return -1;
@@ -105,22 +105,22 @@ static void unmap_peripheral(struct bcm2835_peripheral *p){
 static void readScope(){
 	int counter=0;
 	struct timespec ts_start, ts_stop;
-	
+
 	local_irq_disable();
 	local_fiq_disable();
-	
+
 	getnstimeofday(&ts_start);
-	
+
 	while(counter<SAMPLE_SIZE){
 		dataStruct.Buffer[counter++]= *(gpio.addr + 13);
 	}
     getnstimeofday(&ts_stop);
-	
+
 	local_fiq_enable();
 	local_irq_enable();
-	
+
 	dataStruct.time = timespec_to_ns(&ts_stop) - timespec_to_ns(&ts_start);
-	
+
 	buf_p = (unsigned char*)&dataStruct;
 	ScopeBufferStart = (unsigned char*)&dataStruct;
 	ScopeBufferStop = ScopeBufferStart + sizeof(struct DataStruct);
@@ -129,7 +129,7 @@ static void readScope(){
 int init_module(void){
 	struct bcm2835_peripheral *p=&myclock;
 	int speed_id = 6;
-	
+
 	Major = register_chrdev(0, DEVICE_NAME, &fops);
 	if(Major < 0){
 		printk(KERN_ALERT "Reg. char dev fail %d\n",Major);
@@ -138,40 +138,40 @@ int init_module(void){
 	pr_info("Major number %d.\n", Major);
 	printk(KERN_INFO "created a dev file with\n");
 	printk(KERN_INFO "'mknod /dev/%s c %d 0'.\n", DEVICE_NAME, Major);
-	
+
 	if(map_peripheral(&gpio) == -1){
 		printk(KERN_ALERT "Failed to map GPIO\n");
 		return -1;
 	}
-	
+
 	INP_GPIO(BIT0_PIN);
 	INP_GPIO(BIT1_PIN);
 	INP_GPIO(BIT2_PIN);
 	INP_GPIO(BIT3_PIN);
 	INP_GPIO(BIT4_PIN);
 	INP_GPIO(BIT5_PIN);
-	
+
 	INP_GPIO(BIT0_PIN2);
 	INP_GPIO(BIT1_PIN2);
 	INP_GPIO(BIT2_PIN2);
 	INP_GPIO(BIT3_PIN2);
 	INP_GPIO(BIT4_PIN2);
 	INP_GPIO(BIT5_PIN2);
-	
+
 	/* set clock signal to pin 4 */
 	p->addr=(uint32_t *)ioremap(CLOCK_BASE, 41*4);
-	
+
 	INP_GPIO(4);
 	OUT_GPIO(4);
 	SET_GPIO_ALT(4,0);
 	*(myclock.addr+28)=0x5A000000 | speed_id;
-	
+
 	while(*(myclock.addr+28) & GZ_CLK_BUSY){};
-	
+
 	*(myclock.addr+29)= 0x5A000000 | (0x32 << 12) | 0;
-	
+
 	*(myclock.addr+28)=0x5A000000 | speed_id;
-	
+
 	return SUCCESS;
 }
 
@@ -201,7 +201,7 @@ static int device_release(struct inode *inode, struct file *file){
 static ssize_t device_read(struct file *filp, char *buffer, size_t length, loff_t *offset){
 	int bytes_read = 0;
 	if(*msg_Ptr == 0) return 0;
-	
+
 	while(length && buf_p < ScopeBufferStop){
 		if(0!=put_user(*(buf_p++), buffer++))
 			printk(KERN_INFO "Problem with copy\n");
