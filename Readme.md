@@ -127,6 +127,7 @@ http://docs.oshpark.com/design-tools/kicad/generating-kicad-gerbers/
 * Have access points to VRef, GND, and maybe VRef / 2 for self testing.
 * Add reference voltage ICs to stabilize Vref
 * Using another ADC
+* See `TASK_UNINTERUPTIBLE` 
 
 ### DONE
 
