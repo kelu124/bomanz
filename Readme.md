@@ -36,7 +36,7 @@ Bomanz: a high speed extension for Raspberry Pi
 
 ## Key Components
 
-* `ADC08200`: 200Msps ADC  
+* `ADC08200`: 200Msps 8 bit ADC (for the fast version)
 
 ## Information
 
@@ -44,7 +44,7 @@ Bomanz: a high speed extension for Raspberry Pi
 
 I've always needed a small upgrade to the existing raspberry ADC extensions, would love something in the 20-Msps range. Let's see if one can do it! Never tried smd, and thinking of using both smd and dip.. interesting learning curve ahead.
 
- An older version using a [CA3306](/CA3306E/) can be found as well.
+A possibly [fast version of a 8 bit AD08200 ADC](/ADC08200/) is available. An older version using a [CA3306](/CA3306E/) can be found as well.
 
 ### How does it work: block diagram
 
@@ -94,6 +94,10 @@ See the [worklog in jupyter](/CA3306E/20170422-FirstAcqs.ipynb) for the [CA3306E
 
 Image of a 0-2V sine at 1MHz.
 
+The setup is represented below:
+
+![](/images/drawing.png)
+
 
 ### Compiling...
 
@@ -125,19 +129,22 @@ http://docs.oshpark.com/design-tools/kicad/generating-kicad-gerbers/
 
 * EndGame: moving to a 20-30Msps, for a 10 to 12 bit ADC. 
 * Have access points to VRef, GND, and maybe VRef / 2 for self testing.
-* Add reference voltage ICs to stabilize Vref
+* Add reference voltage ICs to stabilize Vref?
+* Switch between 0 and Vref/2 bias
 * Using another ADC
-* See `TASK_UNINTERUPTIBLE` 
+* Using a second ADC (interleaving?)
 
 ### DONE
 
-* KiCAD
+* KiCAD for CA3306 board
+* KiCAD for ADC08200 board
+* Basic kernel module
+* See `TASK_UNINTERUPTIBLE`? -> No effect
 
 ### People
 
 * Thanks to @eiffel for his kernel expertise and GPL3 crusade
 
- 
 
 ## License
 
