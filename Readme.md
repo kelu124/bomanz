@@ -20,7 +20,7 @@ I've tried 3 different versions, increasing in complexity
 
 ### Image of these HATs
 
-![](/image/20170717_203224.jpg)
+![](/images/20170717_203224.jpg)
 
 ## Some results
 
